@@ -1,1 +1,49 @@
 A platform developed to track user interactions in web search for research purposes.
+
+## nginx notes
+The platform utilises nginx to serve as a proxy. A latest config file is added named default 
+and should be used when setting up your own nginx enviorment, with your own paramaters. 
+The ssl settings are optional.
+
+## Setup Backend notes
+Instructions for setting up the go backend for linux (might not be complete).
+
+sudo add-apt-repository ppa:longsleep/golang-backports | import new go repo
+
+sudo apt install golang-go | install go lang
+
+go get | install dependencies (use in the folder containing all the files)
+
+go get -u | update dependecies
+
+go build | build the project
+
+./backend | run the backend after building
+
+## Database
+The go backend utilises a postgress backend to store unique userids, such that we can give each user a unique userId.
+This database should be created and be linked in the go files.
+
+It is also optional to use your own database.
+
+## Flow
+After setting and starting up the nginx server you can browse to that adress and it should display the google website (proxy). 
+The injected JavaScript will first check if the user as an userID cookie to link the userinteractions with. 
+
+Otherwise it will request a new nw userID from the backend and this will assign a new encrypted userId cookie to the user, 
+which then will be used to link the userinteractions.
+
+After this the JavaScript will send the userId and the different user interactions to the backend (go server).
+This server wil then write the different interactions in new files in the backend folder. 
+What these values mean can be found in my thesis (TODO link here).
+
+### Note
+When working on this project I performed some hot fixxes on the server itself 
+and I might have forgotten to push them here, so keep this in mind.
+
+
+
+
+
+
+
